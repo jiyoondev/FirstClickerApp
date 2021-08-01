@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.jiyoon.fistclickerapp.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.concurrent.timer
@@ -34,7 +36,13 @@ class MainActivity : AppCompatActivity() {
             Thread() {
                 currentMoney++
                 sumMoney += currentMoney
+
+                // 일정 자원 수집 후 버튼 노출
+                if (currentMoney == 11) {
+                    handler.post { binding.btnSource1.visibility = View.VISIBLE }
+                }
             }.start()
+
             binding.tvStartSource1.text = "Money: $currentMoney"
         }
 
@@ -44,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnSource1.setOnClickListener {
             source1IsClicked = true
         }
+
 
         // 기능 - 클릭 시 (자원: 돈) 증가
         Thread() {
