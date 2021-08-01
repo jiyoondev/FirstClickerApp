@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tvMoney"
+        android:id="@+id/tvStartSource1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Click to Earn Money"
@@ -16,13 +16,58 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="click"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvMoney" />
+        app:layout_constraintTop_toBottomOf="@id/tvStartSource1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSource1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnClick">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivShop1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/shop_bakery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvShop1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/shop1"
+            app:layout_constraintStart_toEndOf="@id/ivShop1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSource1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Bread : 0"
+            app:layout_constraintStart_toEndOf="@id/ivShop1"
+            app:layout_constraintTop_toBottomOf="@id/tvShop1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSource1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/resource_bread"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
