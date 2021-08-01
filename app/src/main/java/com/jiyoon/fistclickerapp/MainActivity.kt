@@ -22,37 +22,44 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         // 기능 - (자원: 돈) 나타내기
-        var sumMoney = 0
+        var sumMoney = 1
         var currentMoney = 1
-
-
-        // TODO: 타이머
 
         // 핸들러
         var handler = Handler(Looper.getMainLooper())
+
 
         // 기능 - 클릭 시 (자원: 돈) 증가
         binding.btnClick.setOnClickListener {
             Thread() {
                 currentMoney++
-                sumMoney += currentMoney
+                sumMoney++
 
                 // 일정 자원 수집 후 버튼 노출
-                if (currentMoney == 11) {
+                if (sumMoney == 11) {
                     handler.post { binding.btnSource1.visibility = View.VISIBLE }
+                    handler.post { binding.tvCost1.visibility = View.VISIBLE }
                 }
             }.start()
 
-            binding.tvStartSource1.text = "Money: $currentMoney"
+            binding.tvStartSource1.text = currentMoney.toString()
         }
 
-
-        // 기능 - shop1 함수
+        // 기능 - shop1 클릭하면 자원 수집 시작
         var source1IsClicked: Boolean = false
+
         binding.btnSource1.setOnClickListener {
             source1IsClicked = true
-        }
 
+            // 기능 - source1 클릭 시 buying cost 빠짐
+            Thread() {
+                var source1BuyingCost = 10
+                currentMoney -= source1BuyingCost
+            }.start()
+
+            var currentMoneyString = currentMoney.toString()
+            binding.tvStartSource1.text = currentMoney.toString()
+        }
 
         // 기능 - 클릭 시 (자원: 돈) 증가
         Thread() {
@@ -62,10 +69,10 @@ class MainActivity : AppCompatActivity() {
             kotlin.concurrent.timer(period = 1000, initialDelay = 1000) {
                 if (source1IsClicked) {
                     currentSource1++
-                    sumSource1 += currentSource1
+                    sumSource1++
 
                     handler.post {
-                        binding.tvSource1.text = "Bread: $currentSource1"
+                        binding.tvSource1.text = currentSource1.toString()
                     }
                 }
             }

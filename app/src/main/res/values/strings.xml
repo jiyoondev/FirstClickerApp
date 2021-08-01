@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">FistClickerApp</string>
     <string name="shop1">Bakery</string>
+    <string name="start_source1">Money: </string>
+    <string name="source1">Bread: </string>
 </resources>
