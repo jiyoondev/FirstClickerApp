@@ -6,11 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/potion_main3"
+        app:layout_constraintRight_toLeftOf="@id/tvAppName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/grand_royal"
+        android:text="Potion Shop"
+        android:textColor="@color/primary_gray_blue"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivMainGif"
+        android:layout_width="0dp"
+        android:layout_height="270dp"
+        android:src="@drawable/potion_store"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName"
+        app:layout_constraintWidth_percent="0.9" />
+
     <TextView
         android:id="@+id/tvStartSource1Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
         android:text="@string/start_source1"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -20,6 +58,9 @@
         android:id="@+id/tvStartSource1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:textSize="15sp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvStartSource1Name"
@@ -29,32 +70,46 @@
         android:id="@+id/btnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click"
+        android:layout_marginTop="4dp"
+        android:text="Click"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvStartSource1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clSource1"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/item_border"
+        android:elevation="1dp"
         android:orientation="horizontal"
+        android:paddingBottom="7dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnClick">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnClick"
+        app:layout_constraintWidth_percent="0.9">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivShop1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/shop_bakery"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/red_potion"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvShop1"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/shop1"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/item1"
+            android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/ivShop1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,27 +117,32 @@
             android:id="@+id/tvSource1Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/source1"
+            android:layout_marginStart="25dp"
+            android:text="@string/quantity"
             app:layout_constraintStart_toEndOf="@id/ivShop1"
             app:layout_constraintTop_toBottomOf="@id/tvShop1" />
 
         <TextView
             android:id="@+id/tvSource1"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
             android:text="0"
             app:layout_constraintStart_toEndOf="@id/tvSource1Name"
             app:layout_constraintTop_toBottomOf="@id/tvShop1" />
+
+        // 밑에 두개 invisible 해야 함
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSource1"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="25dp"
             android:src="@drawable/resource_bread"
             android:text="Buy"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,8 +150,10 @@
             android:id="@+id/tvCost1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="35dp"
+            android:gravity="top"
             android:text="cost: 10"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnSource1" />
 

@@ -1,5 +1,6 @@
 package com.jiyoon.fistclickerapp
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.jiyoon.fistclickerapp.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.concurrent.timer
@@ -20,6 +22,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        // 레아아웃 - 메인 gif 이미지 로드
+        Glide.with(this).load(R.drawable.potion_store).into(binding.ivMainGif)
+
+        // 기능 - 배경 음악 재생
+        var ostPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.misty_valley_ost)
+        ostPlayer?.isLooping = true
+
+        Thread() {
+            ostPlayer?.start()
+        }.start()
 
         // 기능 - (자원: 돈) 나타내기
         var sumMoney = 1
