@@ -8,14 +8,21 @@ import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jiyoon.fistclickerapp.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.concurrent.timer
 import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,10 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         // 기능 - 배경 음악 재생
         var ostPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.misty_valley_ost)
-        ostPlayer?.isLooping = true
+        ostPlayer.isLooping = true
 
         Thread() {
-            ostPlayer?.start()
+            ostPlayer.start()
         }.start()
 
         // 기능 - (자원: 돈) 나타내기
@@ -66,15 +73,18 @@ class MainActivity : AppCompatActivity() {
 
             // 기능 - source1 클릭 시 buying cost 빠짐
             Thread() {
-                var source1BuyingCost = 10
+                var source1BuyingCost = 11
                 currentMoney -= source1BuyingCost
-            }.start()
 
-            var currentMoneyString = currentMoney.toString()
-            binding.tvStartSource1.text = currentMoney.toString()
+                var currentMoneyString = currentMoney.toString()
+                handler.post {
+                    binding.tvStartSource1.text = currentMoney.toString()
+                }
+
+            }.start()
         }
 
-        // 기능 - 클릭 시 (자원: 돈) 증가
+        // 기능 - (자원: 포션1) 증가
         Thread() {
             var sumSource1 = 0
             var currentSource1 = 0
@@ -90,5 +100,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }.start()
+
+        // TODO: 돈 음수되지 않게 제한
+//        if (currentMoney < 0) {
+//            Toast.makeText(this, R.string.money_not_enough, Toast.LENGTH_LONG).show()
+//        }
+
+        // TODO: 레이아웃 - Bottom Navigation 구현
+
+
     }
+
 }
