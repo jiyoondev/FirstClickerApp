@@ -139,6 +139,8 @@ class MainActivity : AppCompatActivity() {
 
         // TODO: 레이아웃 - Bottom Navigation 구현
 
+        // TODO: 레이아웃 - Recycler View 구현
+
 
     }
 
