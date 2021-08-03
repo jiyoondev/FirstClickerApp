@@ -3,6 +3,18 @@
     <string name="item1">Potion of Healing</string>
     <string name="start_source1">Money: </string>
     <string name="quantity">Quantity: </string>
+    <string name="price">Price: </string>
+    <string name="cost">Cost: </string>
     <string name="item2">Potion of Magic</string>
     <string name="item3">Potion of ?</string>
+    <string name="ending_description">You drank the Potion of Mystery. \n Now It\'s up to you to deal with \n  the power of the potion.</string>
+    <string name="developer">developer: Jiyoon</string>
+    <string name="game_app_name">Potion Shop</string>
+    <string name="game_complete">Game Completed!</string>
+    <string name="app_icon">App Icon</string>
+    <string name="zero_start">0</string>
+    <string name="click">Click</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="main_image">Main Image</string>
 </resources>
