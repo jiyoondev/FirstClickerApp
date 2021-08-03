@@ -57,8 +57,7 @@ class MainActivity : AppCompatActivity() {
 
                 // 일정 자원 수집 후 버튼 노출
                 if (sumMoney == 11) {
-                    handler.post { binding.btnSource1.visibility = View.VISIBLE }
-                    handler.post { binding.tvCost1.visibility = View.VISIBLE }
+                    handler.post { binding.clSource1.visibility = View.VISIBLE }
                 }
             }.start()
 
@@ -68,6 +67,10 @@ class MainActivity : AppCompatActivity() {
         // 기능 - shop1 클릭하면 자원 수집 시작
         var source1IsClicked: Boolean = false
 
+
+        var sumSource1 = 0
+        var currentSource1 = 0
+
         binding.btnSource1.setOnClickListener {
             source1IsClicked = true
 
@@ -76,30 +79,58 @@ class MainActivity : AppCompatActivity() {
                 var source1BuyingCost = 11
                 currentMoney -= source1BuyingCost
 
+
                 var currentMoneyString = currentMoney.toString()
+
                 handler.post {
                     binding.tvStartSource1.text = currentMoney.toString()
                 }
 
+                // 기능 - 3초 후 포션 생성 반복
+                var second: Int = 0
+
+                kotlin.concurrent.timer(period = 6000, initialDelay = 1000) {
+                    if (source1IsClicked && second == 0) {
+                        currentSource1++
+                        sumSource1++
+                        second++
+
+                        // TODO: progress bar 천천히 제대로 보이게
+
+                        handler.post {
+                            binding.tvSource1.text = currentSource1.toString()
+                            binding.prbSource1.setProgress(6000,true)
+                        }
+                    }
+                    if (second == 1) {
+                        cancel()
+                        second = 0
+
+                        // TODO: 프로그레스바 3초 후 초기화 후 다시 재생 이것도 변수로 해보기
+//                        handler.post {
+//                            binding.prbSource1.
+//                        }
+                    }
+                }
             }.start()
         }
 
-        // 기능 - (자원: 포션1) 증가
-        Thread() {
-            var sumSource1 = 0
-            var currentSource1 = 0
-
-            kotlin.concurrent.timer(period = 1000, initialDelay = 1000) {
-                if (source1IsClicked) {
-                    currentSource1++
-                    sumSource1++
+        // TODO: 기능 - 판매시 돈 자원 증가
+        binding.btnSell1.setOnClickListener {
+            Thread() {
+                if(currentSource1 > 0) {
+                    currentMoney += currentSource1 * 12
+                    currentSource1 = 0
 
                     handler.post {
+                        binding.tvStartSource1.text = currentMoney.toString()
                         binding.tvSource1.text = currentSource1.toString()
                     }
+
                 }
-            }
-        }.start()
+            }.start()
+
+        }
 
         // TODO: 돈 음수되지 않게 제한
 //        if (currentMoney < 0) {
