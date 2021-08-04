@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.transition.TransitionManager
 import android.view.View
 import com.bumptech.glide.Glide
 import com.jiyoon.fistclickerapp.databinding.ActivityMainBinding
@@ -47,13 +48,28 @@ class MainActivity : AppCompatActivity() {
                 sumMoney++
 
                 // 일정 자원 수집 후 버튼 노출
-                if (sumMoney == 11) {
-                    handler.post { binding.clSource1.visibility = View.VISIBLE }
+                if (currentMoney >= 11) {
+                    handler.post {
+                        binding.clSource1.visibility = View.VISIBLE
+                    }
+                }
+                if (currentMoney >= 71) {
+                    handler.post {
+                        binding.clSource2.visibility = View.VISIBLE
+                    }
+                }
+                if (currentMoney >= 251) {
+                    handler.post {
+                        binding.clSource3.visibility = View.VISIBLE
+                    }
                 }
             }.start()
 
             binding.tvStartSource1.text = currentMoney.toString()
         }
+
+
+
 
         // 기능 - shop1 클릭하면 자원 수집 시작
         var source1IsClicked = false
