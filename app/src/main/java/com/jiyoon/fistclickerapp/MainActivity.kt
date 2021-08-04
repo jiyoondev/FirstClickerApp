@@ -69,11 +69,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
         // 기능 - shop1 클릭하면 자원 수집 시작
         var source1IsClicked = false
-        var source2IsClicked= false
+        var source2IsClicked = false
 
         var sumSource1 = 0
         var currentSource1 = 0
@@ -215,4 +213,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        var ostPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.misty_valley_ost)
+        ostPlayer?.release()
+        ostPlayer = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        var ostPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.misty_valley_ost)
+        ostPlayer?.release()
+    }
 }
