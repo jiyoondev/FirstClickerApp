@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private var ostPlayer: MediaPlayer = MediaPlayer()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,12 +24,12 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        // 기능 - 배경 음악 재생
+        ostPlayer = MediaPlayer.create(this, R.raw.misty_valley_ost)
+        ostPlayer.isLooping = true
+
         // 레아아웃 - 메인 gif 이미지 로드
         Glide.with(this).load(R.drawable.potion_store).into(binding.ivMainGif)
-
-        // 기능 - 배경 음악 재생
-        val ostPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.misty_valley_ost)
-        ostPlayer.isLooping = true
 
         Thread() {
             ostPlayer.start()
@@ -215,14 +217,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        var ostPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.misty_valley_ost)
-        ostPlayer?.release()
-        ostPlayer = null
+        ostPlayer.release()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        var ostPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.misty_valley_ost)
-        ostPlayer?.release()
+        ostPlayer.release()
     }
 }
